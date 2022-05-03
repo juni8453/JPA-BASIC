@@ -16,25 +16,28 @@ public class JpaMain {
 
         try {
             // 비영속 상태 (EntityManager 에서 관리 x)
-            Member member = new Member();
-            member.setId(101L);
-            member.setName("HelloJPA");
+//            Member member = new Member();
+//            member.setId(101L);
+//            member.setName("HelloJPA");
+            MemberSequenceTest member = new MemberSequenceTest();
+            member.setUsername("TestA");
 
             // 영속 상태로 전환 (아직 DB 저장 x)
             // Member Entity 는 현재 영속 상태이며 1차 캐시에 저장된 상태이다.
+//            em.persist(member);
             em.persist(member);
 
             // 조회 시 먼저 1차 캐시를 뒤진다.
             // 1차 캐시 중 PK 값이 101인 데이터를 찾아낸다. 있다면 Select 문이 실행되지 않고도 조회할 수 있다.
             // 여기서는 1차 캐시에 PK 값이 101인 데이터가 있기 때문에 굳이 Select 문을 사용하지 않고도 조회한 것이다. (log 에 select 없음)
-            Member findMember1 = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
+//            Member findMember1 = em.find(Member.class, 101L);
+//            Member findMember2 = em.find(Member.class, 101L);
 
-            System.out.println("findMember1.getId() = " + findMember1.getId());
-            System.out.println("findMember1.getName() = " + findMember1.getName());
+//            System.out.println("findMember1.getId() = " + findMember1.getId());
+//            System.out.println("findMember1.getName() = " + findMember1.getName());
 
             // 같은 트랜잭션 내부에서 같은 똑같은 객체를 find() 하면, == 비교 시 true 를 반환받을 수 있다.
-            System.out.println(findMember1 == findMember2);
+//            System.out.println(findMember1 == findMember2);
 
             // 준영속 상태로 전환 (영속 상태에서 분리된 상태)
             // em.detach(member);
