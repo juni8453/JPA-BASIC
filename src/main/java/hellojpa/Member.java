@@ -10,6 +10,14 @@ public class Member {
     private Long id;
     private String name;
 
+    // JPA 엔티티는 기본생성자가 필요하다.
+    public Member() {}
+
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
