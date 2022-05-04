@@ -20,6 +20,9 @@ public class Order {
     // 즉, Order 에서 양방향 매핑을 하기 위해 mappedBy = "member" 하면 됨
     private Member member;
 
+    @OneToOne(mappedBy = "order")
+    private Delivery delivery;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
