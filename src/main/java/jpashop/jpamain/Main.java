@@ -1,5 +1,6 @@
 package jpashop.jpamain;
 
+import jpashop.domain.Book;
 import jpashop.domain.Order;
 import jpashop.domain.OrderItem;
 
@@ -16,9 +17,10 @@ public class Main {
         tx.begin();
 
         try {
-            // TODO 비즈니스 로직 작성
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+            em.persist(book);
 
             tx.commit();
         } catch(Exception e) {

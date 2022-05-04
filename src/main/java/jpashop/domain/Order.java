@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 // order 은 예약어로 테이블명을 사용할 수 없을 수도 있어서 orders 로 많이들 사용한다.
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -20,7 +20,9 @@ public class Order {
     // 즉, Order 에서 양방향 매핑을 하기 위해 mappedBy = "member" 하면 됨
     private Member member;
 
-    @OneToOne(mappedBy = "order")
+//    @OneToOne(mappedBy = "order")
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
     @OneToMany(mappedBy = "order")
