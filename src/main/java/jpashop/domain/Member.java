@@ -1,6 +1,10 @@
 package jpashop.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Member {
@@ -13,10 +17,24 @@ public class Member {
     private String name;
 
     @Embedded
-    private Period wordPeriod;
+    private Address homeAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
+        @JoinColumn(name = "MEMBER_ID"))
+    // 아래의 Address 와 다르게 String 타입이기 떄문에 이름을 따로 지정했다.
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns =
+        @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory = new ArrayList<>();
 
     @Embedded
-    private Address homeAddress;
+    private Period wordPeriod;
+
+    public Member() {}
 
     public Long getId() {
         return id;
